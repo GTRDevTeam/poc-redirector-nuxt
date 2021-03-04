@@ -11,9 +11,9 @@ export default {
   props: {
     msg: String
   },
-  mounted(){
+  created(){
+    console.log('IMCREAETED')
     if(process.browser){
-      console.log('bro')
       const instance = window.location.host.split('.dev')[0]
       let from = window.location.href.split('/')[window.location.href.split('/').length -1]
       const url = '/.netlify/functions/map'
@@ -23,9 +23,6 @@ export default {
         window.location.href = res.data
       })
       .catch(err => console.error(err))
-    }
-    else {
-      console.info('no bro :(')
     }
   },
   head(){
