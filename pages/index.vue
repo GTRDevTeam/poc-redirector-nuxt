@@ -11,7 +11,7 @@ export default {
   props: {
     msg: String
   },
-  created(){
+  mounted(){
     if(process.browser){
       console.log('bro')
       const instance = window.location.host.split('.dev')[0]
