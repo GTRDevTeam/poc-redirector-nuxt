@@ -1,18 +1,8 @@
 [build]
   functions = "functions"
   command = "yarn generate"
-
-[[redirects]]
-  from = "/"
-  to = "/"
-  status = 301
-  force = true
-
+    # This will be run the site build
 [[redirects]]
   from = "/*"
-  to = "/:splat"
-  status = 301
-  force = true
-
-
-
+  to = "/index.html"
+  status = 200
