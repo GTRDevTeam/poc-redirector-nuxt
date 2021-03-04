@@ -1,14 +1,16 @@
 [build]
   functions = "functions"
   command = "yarn generate"
-    # This will be run the site build
+  
+[[redirects]]
+  from = "/"
+  to = "/"
+  status = 301
+
 [[redirects]]
   from = "/*"
   to = "/:splat"
   status = 301
 
-[[redirects]]
-  from = "/"
-  to = "/"
-  status = 301
+
 
