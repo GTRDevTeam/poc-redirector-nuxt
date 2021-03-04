@@ -12,7 +12,6 @@ export default {
     msg: String
   },
   created(){
-    console.log('IMCREAETED')
     if(process.browser){
       const instance = window.location.host.split('.dev')[0]
       let from = window.location.href.split('/')[window.location.href.split('/').length -1]
