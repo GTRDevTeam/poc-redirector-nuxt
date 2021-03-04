@@ -4,5 +4,5 @@
     # This will be run the site build
 [[redirects]]
   from = "/*"
-  to = "/index.html/:splat"
+  to = "/index.html"
   status = 200
