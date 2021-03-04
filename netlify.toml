@@ -1,8 +1,3 @@
 [build]
   functions = "functions"
   command = "yarn generate"
-    # This will be run the site build
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
