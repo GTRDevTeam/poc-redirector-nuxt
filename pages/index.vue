@@ -19,7 +19,7 @@ export default {
       axios.get(`${url}?from=${from}&instance=${instance}`)
       .then(res => {
         res;
-        window.location.href = res.data
+        window.location.replace(res.data)
       })
       .catch(err => console.error(err))
     }
