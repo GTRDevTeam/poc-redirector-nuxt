@@ -13,9 +13,6 @@ export default {
   },
   created(){
     if(process.browser){
-      // let a = document.createElement('a')
-      // a.href = window.location.
-      console.log(window.location)
       const instance = window.location.host.split('.dev')[0]
       let from = window.location.pathname.substring(1)
       const url = '/.netlify/functions/map'
