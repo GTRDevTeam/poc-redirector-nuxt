@@ -1,4 +1,6 @@
-# poc-redirector-nuxt
+# poc-redirector-nuxt  
+
+Requires netlify CLI to run locally : `npm i -g netlify-cli`    
 
 ## Build Setup
 
