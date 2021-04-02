@@ -13,12 +13,9 @@ export default {
   },
   created(){
     if(process.browser){
-      const instance = window.location.host.split('.dev')[0]
-      let from = window.location.pathname.substring(1)
       const url = '/.netlify/functions/map'
-      axios.get(`${url}?from=${from}&instance=${instance}`)
+      axios.get(url)
       .then(res => {
-        res;
         window.location.href = res.data
       })
       .catch(err => console.error(err))
