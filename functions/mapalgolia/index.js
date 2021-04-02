@@ -29,7 +29,7 @@ exports.handler = async (event, context) => {
     return {
       statusCode: 404,
       headers,
-      body: hashed_from,
+      body: from,
     }
   }
 }
