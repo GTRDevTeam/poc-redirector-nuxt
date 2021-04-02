@@ -23,13 +23,15 @@ exports.handler = async (event, context) => {
     return {
       statusCode: 200,
       headers,
-      body: JSON.stringify(response),
+      // body: JSON.stringify(response),
+      body: JSON.stringify({from, hashed_from})
     }
   } catch (e) {
     return {
       statusCode: 404,
       headers,
-      body: e.message,
+      // body: e.message,
+      body: JSON.stringify({ from, hashed_from }),
     }
   }
 }
