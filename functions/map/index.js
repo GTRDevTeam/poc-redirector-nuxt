@@ -8,8 +8,11 @@ const headers = {
 };
 
 exports.handler = async (event, context) => {
-  const from = event.queryStringParameters.from
-  const instance = event.queryStringParameters.instance
+  console.log('context : ', context)
+  console.log('')
+  console.log('event : ', event)
+  const instance = event.host.split(('.'))[0]
+  const from = event.referer.split(`${event.host}/`)[1]
   try {
     const content = await fs.readFile(path.join(__dirname, instance, "store.json"), {
       encoding: "utf-8",
