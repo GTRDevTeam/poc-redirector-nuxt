@@ -16,7 +16,7 @@ export default {
       const url = '/.netlify/functions/mapalgolia'
       axios.get(url)
       .then(res => {
-        // window.location.href = res.data
+        window.location.href = res.data
       })
       .catch(err => console.error(err))
     }
