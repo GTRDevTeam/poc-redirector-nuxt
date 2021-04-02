@@ -17,8 +17,8 @@ exports.handler = async (event, context) => {
     const hashed_instance = crypto.createHash("md5").update(instance).digest("hex")
     const ALGOLIA_CLIENT = algoliasearch(ALGOLIA_APP_ID, ALGOLIA_API_KEY)
     const INDEX = ALGOLIA_CLIENT.initIndex(`redirect_${hashed_instance}`)
-
-    response = await INDEX.getObject(crypto.createHash("md5").update(from).digest("hex"))
+    hashed_from = crypto.createHash("md5").update(from).digest("hex")
+    response = await INDEX.getObject(hashed_from)
 
     return {
       statusCode: 200,
@@ -29,7 +29,7 @@ exports.handler = async (event, context) => {
     return {
       statusCode: 404,
       headers,
-      body: e.message,
+      body: hashed_from,
     }
   }
 }
