@@ -13,7 +13,7 @@ export default {
   },
   created(){
     if(process.browser){
-      const url = '/.netlify/functions/map'
+      const url = '/.netlify/functions/mapalgolia'
       axios.get(url)
       .then(res => {
         window.location.href = res.data
