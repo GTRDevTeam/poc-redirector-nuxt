@@ -18,17 +18,29 @@ exports.handler = async (event, context) => {
     const hashed_from = crypto.createHash("md5").update(from).digest("hex")
     const ALGOLIA_CLIENT = algoliasearch(ALGOLIA_APP_ID, ALGOLIA_API_KEY)
     const INDEX = ALGOLIA_CLIENT.initIndex(`redirect_${hashed_instance}`)
-    response = await INDEX.getObject(hashed_from)
-    return {
-      statusCode: 200,
-      headers,
-      body: response.r,
+    try {
+      response = await INDEX.getObject(hashed_from)
+      return {
+        statusCode: 200,
+        headers,
+        body: response.r,
+      }
+    }
+    catch (e) {
+      // Object does not exist -> return client-specific fallback
+      response = await INDEX.getObject("fallback")
+       return {
+         statusCode: 200,
+         headers,
+         body: response.r,
+       }
     }
   } catch (e) {
+    // Index does not exist or any other error -> return hard coded client-agnostic fallback
     return {
       statusCode: 200,
       headers,
-      body: "https://www.google.com/search?q=FALLBACK",
+      body: "https://www.google.com/search?q=GTRFALLBACK",
     }
   }
 }
