@@ -19,10 +19,6 @@ exports.handler = async (event, context) => {
     const ALGOLIA_CLIENT = algoliasearch(ALGOLIA_APP_ID, ALGOLIA_API_KEY)
     const INDEX = ALGOLIA_CLIENT.initIndex(`redirect_${hashed_instance}`)
     response = await INDEX.getObject(hashed_from)
-    if (!response) {
-      response = await INDEX.getObject("fallback")
-    }
-
     return {
       statusCode: 200,
       headers,
@@ -32,7 +28,7 @@ exports.handler = async (event, context) => {
     return {
       statusCode: 404,
       headers,
-      body: e.message,
+      body: "https://www.google.com/search?q=FALLBACK",
     }
   }
 }
