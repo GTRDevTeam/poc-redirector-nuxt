@@ -16,10 +16,12 @@ exports.handler = async (event, context) => {
     const instance = event.headers.host.split(".")[0]
     const hashed_instance = crypto.createHash("md5").update(instance).digest("hex")
     const hashed_from = crypto.createHash("md5").update(from).digest("hex")
-    console.log({from, instance, hashed_from, hashed_instance})
     const ALGOLIA_CLIENT = algoliasearch(ALGOLIA_APP_ID, ALGOLIA_API_KEY)
     const INDEX = ALGOLIA_CLIENT.initIndex(`redirect_${hashed_instance}`)
     response = await INDEX.getObject(hashed_from)
+    if (!response) {
+      response = await INDEX.getObject("fallback")
+    }
 
     return {
       statusCode: 200,
