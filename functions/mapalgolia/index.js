@@ -26,7 +26,7 @@ exports.handler = async (event, context) => {
     }
   } catch (e) {
     return {
-      statusCode: 404,
+      statusCode: 200,
       headers,
       body: "https://www.google.com/search?q=FALLBACK",
     }
