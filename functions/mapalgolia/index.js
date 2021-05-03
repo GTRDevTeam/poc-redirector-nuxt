@@ -31,7 +31,7 @@ exports.handler = async event => {
     const INDEX = ALGOLIA_CLIENT.initIndex(`redirect_${hashed_instance}`)
     try {
       response = await INDEX.getObject(hashed_from)
-      winston.log(JSON.stringify({from, instance, response}))
+      winston.log("redirect",JSON.stringify({from, instance, response}))
       return {
         statusCode: 200,
         headers,
