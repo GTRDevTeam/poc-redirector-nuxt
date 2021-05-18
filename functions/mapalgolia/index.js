@@ -1,3 +1,4 @@
+const { FALLBACK } = process.env || "google.com"
 const algoliasearch = require("algoliasearch")
 const crypto = require("crypto")
 const winston = require("winston")
@@ -18,8 +19,8 @@ const headers = {
   "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE",
 }
 
-const ALGOLIA_APP_ID = "F1XZFUDSPJ"
-const ALGOLIA_API_KEY = "fb71ffe2a825e195b385aeb276330b9a"
+const ALGOLIA_APP_ID = process.env.ALGOLIA_APP_ID
+const ALGOLIA_API_KEY = process.env.ALGOLIA_API_KEY
 
 exports.handler = async event => {
   try {
@@ -31,7 +32,7 @@ exports.handler = async event => {
     const INDEX = ALGOLIA_CLIENT.initIndex(`redirect_${hashed_instance}`)
     try {
       response = await INDEX.getObject(hashed_from)
-      winston.log("redirect",JSON.stringify({from, instance, response}))
+      winston.log('info', JSON.stringify({from, instance, response}))
       return {
         statusCode: 200,
         headers,
@@ -52,7 +53,7 @@ exports.handler = async event => {
     return {
       statusCode: 200,
       headers,
-      body: "https://www.google.com/search?q=GTRFALLBACK",
+      body: json.stringify({FALLBACK, ALGOLIA_APP_ID}),
     }
   }
 }
