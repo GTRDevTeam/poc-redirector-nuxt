@@ -53,7 +53,7 @@ exports.handler = async event => {
     return {
       statusCode: 200,
       headers,
-      body: json.stringify({FALLBACK, ALGOLIA_APP_ID}),
+      body: JSON.stringify({FALLBACK, ALGOLIA_APP_ID}),
     }
   }
 }
